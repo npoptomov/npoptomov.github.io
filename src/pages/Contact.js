@@ -9,6 +9,14 @@ const ContactSection = styled(motion.section)`
   background: radial-gradient(circle at center, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
   position: relative;
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    padding: 3rem 1rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 2rem 1rem;
+  }
 `;
 
 const Title = styled(motion.h2)`
@@ -17,6 +25,15 @@ const Title = styled(motion.h2)`
   margin-bottom: 3rem;
   text-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
   letter-spacing: 1px;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const ContactCard = styled(motion.div)`
@@ -33,6 +50,14 @@ const ContactCard = styled(motion.div)`
     box-shadow: 0 0 40px rgba(0, 212, 255, 0.6);
     border-color: #00ffa2;
   }
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+  }
 `;
 
 const ContactItem = styled(motion.div)`
@@ -41,6 +66,15 @@ const ContactItem = styled(motion.div)`
   margin: 1.5rem 0;
   font-size: 1.2rem;
   color: #fff;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+    margin: 1rem 0;
+  }
 `;
 
 const IconWrapper = styled.span`
@@ -54,6 +88,14 @@ const IconWrapper = styled.span`
     color: #00ffa2;
     transform: scale(1.2);
     text-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1rem;
   }
 `;
 

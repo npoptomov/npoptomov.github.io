@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import ProfilePic from '../1707452033555.jpg';
 
 const Nav = styled.nav`
   background: rgba(0, 0, 0, 0.9);
@@ -72,6 +73,15 @@ const Logo = styled(motion.h1)`
   @media (max-width: 768px) {
     font-size: 1.5rem;
   }
+`;
+
+const Avatar = styled.img`
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin-right: 1rem;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+  border: 2px solid #00d4ff;
 `;
 
 const NavMenu = styled(motion.div)`
@@ -213,13 +223,16 @@ function Header() {
 
   return (
     <Nav>
-      <Logo
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1 }}
-      >
-        Nikola Pop Tomov
-      </Logo>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <Avatar src={ProfilePic} alt="Avatar" />
+        <Logo
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+        >
+          Nikola Pop Tomov
+        </Logo>
+      </div>
 
       {isMobile && (
         <Hamburger
@@ -253,9 +266,7 @@ function Header() {
             key={path}
             custom={index}
             initial="hidden"
-            animate={
-              isMobile ? (isOpen ? 'visible' : 'hidden') : 'visible'
-            }
+            animate={isMobile ? (isOpen ? 'visible' : 'hidden') : 'visible'}
             variants={isMobile ? linkVariants : {}}
           >
             <NavLink to={path} onClick={() => setIsOpen(false)}>
