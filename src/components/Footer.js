@@ -1,11 +1,10 @@
-// Footer.js
 import React from 'react';
 import styled from 'styled-components';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 const FooterContainer = styled.footer`
-  background: rgba(0, 0, 0, 0.9);
+  background: linear-gradient(to top, rgba(10, 10, 35, 0.95), rgba(26, 26, 61, 0.95));
   padding: 2rem;
   text-align: center;
   color: #fff;

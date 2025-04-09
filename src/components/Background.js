@@ -6,7 +6,7 @@ import { loadFull } from "tsparticles";
 
 function Background() {
   const particlesInit = useCallback(async (engine) => {
-    await loadFull(engine); // Loads all the tsParticles features into engine
+    await loadFull(engine);
   }, []);
 
   return (
@@ -22,7 +22,7 @@ function Background() {
         },
         particles: {
           number: {
-            value: 80,
+            value: 180,
             density: {
               enable: true,
               area: 800,
@@ -39,7 +39,7 @@ function Background() {
             random: true,
           },
           size: {
-            value: 3,
+            value: 5,
             random: true,
           },
           links: {
@@ -68,7 +68,7 @@ function Background() {
           },
           modes: {
             repulse: {
-              distance: 100,
+              distance: 200,
             },
           },
         },

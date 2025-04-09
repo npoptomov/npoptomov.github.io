@@ -1,4 +1,3 @@
-// Header.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -7,7 +6,7 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import ProfilePic from '../1707452033555.jpg';
 
 const Nav = styled.nav`
-  background: rgba(0, 0, 0, 0.9);
+  background: linear-gradient(to bottom, rgba(26, 26, 61, 0.95), rgba(10, 10, 35, 0.95));
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
@@ -21,7 +20,7 @@ const Nav = styled.nav`
 
   @media (max-width: 768px) {
     padding: 1rem;
-    flex-wrap: wrap;
+    position: relative;
   }
 `;
 
@@ -70,6 +69,10 @@ const Logo = styled(motion.h1)`
   text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
   letter-spacing: 2px;
 
+  & span {
+    color: #ff00ff; /* Color for the word Portfolio */
+  }
+
   @media (max-width: 768px) {
     font-size: 1.5rem;
   }
@@ -82,6 +85,11 @@ const Avatar = styled.img`
   margin-right: 1rem;
   box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
   border: 2px solid #00d4ff;
+
+  @media (max-width: 768px) {
+    width: 60px;
+    height: 60px;
+  }
 `;
 
 const NavMenu = styled(motion.div)`
@@ -94,7 +102,7 @@ const NavMenu = styled(motion.div)`
     right: 0;
     height: 100vh;
     width: 70%;
-    background: rgba(0, 0, 0, 0.95);
+    background: linear-gradient(to bottom, rgba(26, 26, 61, 0.95), rgba(10, 10, 35, 0.95));
     flex-direction: column;
     justify-content: center;
     z-index: 1000;
@@ -132,10 +140,32 @@ const Hamburger = styled(motion.div)`
   font-size: 1.5rem;
   cursor: pointer;
 
+  @media (min-width: 769px) {
+    display: none;
+  }
+
   @media (max-width: 768px) {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     z-index: 1001;
   }
+`;
+
+const NavContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    justify-content: space-between;
+  }
+`;
+
+const LogoContainer = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const menuVariants = {
@@ -209,7 +239,7 @@ function Header() {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
       if (window.innerWidth > 768) {
-        setIsOpen(false); // ensure menu is closed on desktop
+        setIsOpen(false); // Ensure menu is closed on desktop
       }
     };
 
@@ -223,58 +253,81 @@ function Header() {
 
   return (
     <Nav>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <Avatar src={ProfilePic} alt="Avatar" />
-        <Logo
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-        >
-          Nikola Pop Tomov
-        </Logo>
-      </div>
+      <NavContainer>
+        <LogoContainer>
+          <Avatar src={ProfilePic} alt="Avatar" />
+          <Logo
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1 }}
+          >
+            Nikola Pop Tomov's <span>Portfolio</span>
+          </Logo>
+        </LogoContainer>
 
-      {isMobile && (
-        <Hamburger
-          onClick={toggleMenu}
-          variants={iconVariants}
-          animate={isOpen ? 'open' : 'closed'}
-        >
-          {isOpen ? <FaTimes /> : <FaBars />}
-        </Hamburger>
-      )}
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          {isMobile && (
+            <Hamburger
+              onClick={toggleMenu}
+              variants={iconVariants}
+              animate={isOpen ? 'open' : 'closed'}
+            >
+              {isOpen ? <FaTimes /> : <FaBars />}
+            </Hamburger>
+          )}
+          {!isMobile && (
+            <NavMenu>
+              {['/', '/about', '/skills', '/experience', '/education', '/contact'].map((path, index) => (
+                <motion.div
+                  key={path}
+                  custom={index}
+                  initial="hidden"
+                  animate="visible"
+                  variants={linkVariants}
+                >
+                  <NavLink to={path} onClick={() => setIsOpen(false)}>
+                    {path === '/' ? 'Home' : path.slice(1).charAt(0).toUpperCase() + path.slice(2)}
+                  </NavLink>
+                </motion.div>
+              ))}
+            </NavMenu>
+          )}
+        </div>
+      </NavContainer>
 
       <AnimatePresence>
         {isMobile && isOpen && (
-          <Overlay
-            variants={overlayVariants}
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            onClick={toggleMenu}
-          />
+          <>
+            <Overlay
+              variants={overlayVariants}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              onClick={toggleMenu}
+            />
+            <NavMenu
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              variants={menuVariants}
+            >
+              {['/', '/about', '/skills', '/experience', '/education', '/contact'].map((path, index) => (
+                <motion.div
+                  key={path}
+                  custom={index}
+                  initial="hidden"
+                  animate="visible"
+                  variants={linkVariants}
+                >
+                  <NavLink to={path} onClick={() => setIsOpen(false)}>
+                    {path === '/' ? 'Home' : path.slice(1).charAt(0).toUpperCase() + path.slice(2)}
+                  </NavLink>
+                </motion.div>
+              ))}
+            </NavMenu>
+          </>
         )}
       </AnimatePresence>
-
-      <NavMenu
-        initial={false}
-        animate={isMobile ? (isOpen ? 'visible' : 'hidden') : false}
-        variants={isMobile ? menuVariants : {}}
-      >
-        {['/', '/about', '/skills', '/experience', '/education', '/contact'].map((path, index) => (
-          <motion.div
-            key={path}
-            custom={index}
-            initial="hidden"
-            animate={isMobile ? (isOpen ? 'visible' : 'hidden') : 'visible'}
-            variants={isMobile ? linkVariants : {}}
-          >
-            <NavLink to={path} onClick={() => setIsOpen(false)}>
-              {path === '/' ? 'Home' : path.slice(1).charAt(0).toUpperCase() + path.slice(2)}
-            </NavLink>
-          </motion.div>
-        ))}
-      </NavMenu>
     </Nav>
   );
 }

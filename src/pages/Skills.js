@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
+// Modified styled components with new additions
 const SkillsSection = styled(motion.section)`
-  padding: 4rem 2rem;
+  padding: 4rem 2rem 6rem 2rem; 
   text-align: center;
   background: radial-gradient(circle at center, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
   position: relative;
   overflow: hidden;
 
   @media (max-width: 768px) {
-    padding: 2rem 1rem;
+    padding: 2rem 1rem 6rem 1rem;
   }
 `;
 
@@ -26,6 +27,13 @@ const Title = styled(motion.h2)`
   }
 `;
 
+const CategoryContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+`;
+
 const CategoryTitle = styled.h3`
   font-size: 1.8rem;
   color: #00d4ff;
@@ -35,11 +43,27 @@ const CategoryTitle = styled.h3`
   background-color: rgba(0, 212, 255, 0.1);
   padding: 0.5rem 1rem;
   border-radius: 8px;
-  display: inline-block;
-  margin-top: 2rem;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background-color: rgba(0, 212, 255, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.6rem;
+  }
 `;
 
-const SkillsGrid = styled.div`
+const Chevron = styled(motion.span)`
+  margin-left: 0.5rem;
+  font-size: 1.2rem;
+  display: inline-block;
+`;
+
+const SkillsGrid = styled(motion.div)`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -98,6 +122,8 @@ const YearsText = styled.p`
 `;
 
 function Skills() {
+  const [openCategories, setOpenCategories] = useState({});
+
   const skills = [
     {
       category: 'Frontend Development',
@@ -190,6 +216,31 @@ function Skills() {
     }),
   };
 
+  const gridVariants = {
+    hidden: { height: 0, opacity: 0 },
+    visible: { 
+      height: 'auto', 
+      opacity: 1,
+      transition: { 
+        duration: 0.5,
+        when: "beforeChildren",
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const chevronVariants = {
+    closed: { rotate: 0 },
+    open: { rotate: 180 }
+  };
+
+  const toggleCategory = (category) => {
+    setOpenCategories(prev => ({
+      ...prev,
+      [category]: !prev[category]
+    }));
+  };
+
   return (
     <SkillsSection
       initial={{ opacity: 0 }}
@@ -205,14 +256,29 @@ function Skills() {
       </Title>
       {skills.map((category, index) => (
         <div key={index}>
-          <CategoryTitle>{category.category}</CategoryTitle>
-          <SkillsGrid>
-            {category.skills.map((skill, i) => (
+          <CategoryContainer>
+            <CategoryTitle 
+              onClick={() => toggleCategory(category.category)}
+            >
+              {category.category}
+              <Chevron
+                variants={chevronVariants}
+                animate={openCategories[category.category] ? "open" : "closed"}
+                transition={{ duration: 0.3 }}
+              >
+                ▼
+              </Chevron>
+            </CategoryTitle>
+          </CategoryContainer>
+          <SkillsGrid
+            variants={gridVariants}
+            initial="hidden"
+            animate={openCategories[category.category] ? "visible" : "hidden"}
+          >
+            {openCategories[category.category] && category.skills.map((skill, i) => (
               <SkillCard
                 key={i}
                 custom={i}
-                initial="hidden"
-                animate="visible"
                 variants={cardVariants}
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: 'spring', stiffness: 300 }}

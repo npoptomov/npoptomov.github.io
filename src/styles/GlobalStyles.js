@@ -1,11 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap');
 
   body {
     margin: 0;
-    font-family:  'Roboto', sans-serif;
+    font-family: 'Rajdhani', 'Roboto', sans-serif;
     background: radial-gradient(ellipse at top, #1a1a3d 0%, #0a0a23 100%);
     color: #fff;
     overflow-x: hidden;

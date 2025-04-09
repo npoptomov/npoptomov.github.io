@@ -1,9 +1,27 @@
-// Home.jsx
-import React from 'react';
+// Home.js
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { Tilt } from 'react-tilt';
+
+// Cursor animation style
+const Cursor = styled.span`
+  display: inline-block;
+  width: 4px;  /* Width of the cursor */
+  height: 3.5rem;  /* Height of the cursor to match the text height */
+  background-color: ${({ color }) => color || '#00d4ff'}; /* Dynamic color based on props */
+  animation: blink 1s step-start infinite;
+  margin-left: 5px;  /* Space between the cursor and the text */
+  position: relative;
+  top: 0.5rem; /* Fine-tune to match the text vertically */
+  
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+`;
 
 const Hero = styled(motion.div)`
   display: flex;
@@ -60,6 +78,25 @@ const Subtitle = styled.p`
 `;
 
 function Home() {
+  const [cursorColor, setCursorColor] = useState('#00d4ff'); // Initial color
+
+  useEffect(() => {
+    // Function to pick a random color from the predefined set
+    const pickRandomColor = () => {
+      const colors = ['#00d4ff', '#00ffa2', '#ff00ff'];
+      const randomIndex = Math.floor(Math.random() * colors.length);
+      return colors[randomIndex];
+    };
+
+    // Set interval to change cursor color every blink (1 second)
+    const interval = setInterval(() => {
+      setCursorColor(pickRandomColor());
+    }, 1000);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <Hero
       initial={{ opacity: 0, y: 50 }}
@@ -76,12 +113,13 @@ function Home() {
               2000,
               "Full-Stack Developer",
               2000,
-              "Future Builder",
+              "Next-Gen Creator",
               2000,
             ]}
             speed={50}
             repeat={Infinity}
           />
+          <Cursor color={cursorColor} />
         </Tagline>
       </Tilt>
       <Subtitle>Building the future with code and creativity</Subtitle>
