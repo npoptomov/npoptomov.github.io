@@ -1,10 +1,10 @@
-// ParticlesBackground.js
+// Background.js
 
 import React, { useCallback } from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 
-function ParticlesBackground() {
+function Background() {
   const particlesInit = useCallback(async (engine) => {
     await loadFull(engine); // Loads all the tsParticles features into engine
   }, []);
@@ -78,4 +78,4 @@ function ParticlesBackground() {
   );
 }
 
-export default ParticlesBackground;
+export default Background;

@@ -11,7 +11,7 @@ import Experience from "./pages/Experience";
 import Education from "./pages/Education";
 import Contact from "./pages/Contact";
 import styled from "styled-components";
-import ParticlesBackground from "./components/ParticlesBackground";
+import ParticlesBackground from "./components/Background";
 
 const AppContainer = styled.div`
   min-height: 100vh;
