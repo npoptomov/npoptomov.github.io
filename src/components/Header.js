@@ -54,7 +54,7 @@ const NavLink = styled(Link)`
   }
 
   @media (max-width: 768px) {
-    margin: 1rem 0;
+    margin: 0.5rem 0; /* Reduced margin to tighten spacing */
     font-size: 1.5rem;
     display: block;
     text-align: center;
@@ -98,13 +98,13 @@ const NavMenu = styled(motion.div)`
 
   @media (max-width: 768px) {
     position: fixed;
-    top: 0;
+    top: 0; /* Full height from the top of the viewport */
     right: 0;
-    height: 100vh;
+    height: 90vh;
     width: 70%;
     background: linear-gradient(to bottom, rgba(26, 26, 61, 0.95), rgba(10, 10, 35, 0.95));
     flex-direction: column;
-    justify-content: center;
+    justify-content: center; /* Center items vertically */
     z-index: 1000;
     box-shadow: -5px 0 15px rgba(0, 212, 255, 0.3);
   }
@@ -117,6 +117,13 @@ const NavMenu = styled(motion.div)`
     background: none;
     box-shadow: none;
   }
+`;
+
+const MenuItems = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Overlay = styled(motion.div)`
@@ -311,19 +318,21 @@ function Header() {
               exit="hidden"
               variants={menuVariants}
             >
-              {['/', '/about', '/skills', '/experience', '/education', '/contact'].map((path, index) => (
-                <motion.div
-                  key={path}
-                  custom={index}
-                  initial="hidden"
-                  animate="visible"
-                  variants={linkVariants}
-                >
-                  <NavLink to={path} onClick={() => setIsOpen(false)}>
-                    {path === '/' ? 'Home' : path.slice(1).charAt(0).toUpperCase() + path.slice(2)}
-                  </NavLink>
-                </motion.div>
-              ))}
+              <MenuItems>
+                {['/', '/about', '/skills', '/experience', '/education', '/contact'].map((path, index) => (
+                  <motion.div
+                    key={path}
+                    custom={index}
+                    initial="hidden"
+                    animate="visible"
+                    variants={linkVariants}
+                  >
+                    <NavLink to={path} onClick={() => setIsOpen(false)}>
+                      {path === '/' ? 'Home' : path.slice(1).charAt(0).toUpperCase() + path.slice(2)}
+                    </NavLink>
+                  </motion.div>
+                ))}
+              </MenuItems>
             </NavMenu>
           </>
         )}

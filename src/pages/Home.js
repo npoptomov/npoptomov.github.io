@@ -8,18 +8,28 @@ import { Tilt } from 'react-tilt';
 // Cursor animation style
 const Cursor = styled.span`
   display: inline-block;
-  width: 4px;  /* Width of the cursor */
-  height: 3.5rem;  /* Height of the cursor to match the text height */
+  width: 0.2rem; /* Adjusted to a thinner, relative size */
+  height: 1em; /* Height relative to the font size of the parent (Tagline) */
   background-color: ${({ color }) => color || '#00d4ff'}; /* Dynamic color based on props */
   animation: blink 1s step-start infinite;
-  margin-left: 5px;  /* Space between the cursor and the text */
+  margin-left: 0.3rem; /* Reduced spacing for smaller screens */
   position: relative;
-  top: 0.5rem; /* Fine-tune to match the text vertically */
-  
+  top: 0.1em; /* Adjusted to align better with text */
+
   @keyframes blink {
     50% {
       opacity: 0;
     }
+  }
+
+  @media (max-width: 768px) {
+    width: 0.15rem; /* Slightly thinner on tablets */
+    margin-left: 0.2rem;
+  }
+
+  @media (max-width: 480px) {
+    width: 0.1rem; /* Even thinner on phones */
+    margin-left: 0.15rem;
   }
 `;
 
@@ -49,8 +59,12 @@ const Tagline = styled.h1`
   margin-bottom: 1rem;
 
   @keyframes gradientMove {
-    0% { background-position: 0% center; }
-    100% { background-position: 200% center; }
+    0% {
+      background-position: 0% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
   }
 
   @media (max-width: 768px) {
