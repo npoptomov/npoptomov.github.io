@@ -1,24 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+// App.jsx
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Skills from "./pages/Skills";
+import Experience from "./pages/Experience";
+import Education from "./pages/Education";
+import Contact from "./pages/Contact";
+import styled from "styled-components";
+import ParticlesBackground from './components/ParticlesBackground';
+
+const AppContainer = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+  padding: 0; /* Remove any padding that might affect Header/Footer */
+  margin: 0; /* Remove any margin */
+  padding-bottom: 80px; /* Add padding to prevent content from being hidden behind the fixed footer */
+
+  @media (max-width: 768px) {
+    padding-bottom: 60px; /* Adjust for smaller footer height on mobile */
+  }
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <ParticlesBackground />
+      <AppContainer>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/skills" element={<Skills />} />
+          <Route path="/experience" element={<Experience />} />
+          <Route path="/education" element={<Education />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+        <Footer />
+      </AppContainer>
+    </Router>
   );
 }
 
