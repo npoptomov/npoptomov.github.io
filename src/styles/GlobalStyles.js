@@ -5,7 +5,7 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     margin: 0;
-    font-family: 'Orbitron', 'Roboto', sans-serif;
+    font-family:  'Roboto', sans-serif;
     background: radial-gradient(ellipse at top, #1a1a3d 0%, #0a0a23 100%);
     color: #fff;
     overflow-x: hidden;

@@ -77,8 +77,8 @@ const Logo = styled(motion.h1)`
 
 const Avatar = styled.img`
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   margin-right: 1rem;
   box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
   border: 2px solid #00d4ff;

@@ -1,5 +1,6 @@
 // App.js
 import React from "react";
+import { GlobalStyles } from "./styles/GlobalStyles";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -10,7 +11,7 @@ import Experience from "./pages/Experience";
 import Education from "./pages/Education";
 import Contact from "./pages/Contact";
 import styled from "styled-components";
-import ParticlesBackground from './components/ParticlesBackground';
+import ParticlesBackground from "./components/ParticlesBackground";
 
 const AppContainer = styled.div`
   min-height: 100vh;
@@ -29,21 +30,24 @@ const AppContainer = styled.div`
 
 function App() {
   return (
-    <Router>
-      <ParticlesBackground />
-      <AppContainer>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/skills" element={<Skills />} />
-          <Route path="/experience" element={<Experience />} />
-          <Route path="/education" element={<Education />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-        <Footer />
-      </AppContainer>
-    </Router>
+    <>
+      <GlobalStyles />
+      <Router>
+        <ParticlesBackground />
+        <AppContainer>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/skills" element={<Skills />} />
+            <Route path="/experience" element={<Experience />} />
+            <Route path="/education" element={<Education />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+          <Footer />
+        </AppContainer>
+      </Router>
+    </>
   );
 }
 
