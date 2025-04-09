@@ -284,7 +284,7 @@ function Header() {
           )}
           {!isMobile && (
             <NavMenu>
-              {['/', '/about', '/skills', '/experience', '/education', '/contact'].map((path, index) => (
+              {['/', '/about', '/skills', '/experience', '/education', '/extras', '/contact'].map((path, index) => (
                 <motion.div
                   key={path}
                   custom={index}
@@ -319,7 +319,7 @@ function Header() {
               variants={menuVariants}
             >
               <MenuItems>
-                {['/', '/about', '/skills', '/experience', '/education', '/contact'].map((path, index) => (
+                {['/', '/about', '/skills', '/experience', '/education', '/extras', '/contact'].map((path, index) => (
                   <motion.div
                     key={path}
                     custom={index}

@@ -9,6 +9,7 @@ import About from "./pages/About";
 import Skills from "./pages/Skills";
 import Experience from "./pages/Experience";
 import Education from "./pages/Education";
+import Extras from "./pages/Extras";
 import Contact from "./pages/Contact";
 import styled from "styled-components";
 import ParticlesBackground from "./components/Background";
@@ -42,6 +43,7 @@ function App() {
             <Route path="/skills" element={<Skills />} />
             <Route path="/experience" element={<Experience />} />
             <Route path="/education" element={<Education />} />
+            <Route path="/extras" element={<Extras />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
           <Footer />
