@@ -1,4 +1,3 @@
-// Skills.jsx
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
@@ -25,6 +24,19 @@ const Title = styled(motion.h2)`
     font-size: 2rem;
     margin-bottom: 2rem;
   }
+`;
+
+const CategoryTitle = styled.h3`
+  font-size: 1.8rem;
+  color: #00d4ff;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background-color: rgba(0, 212, 255, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  display: inline-block;
+  margin-top: 2rem;
 `;
 
 const SkillsGrid = styled.div`
@@ -65,7 +77,7 @@ const SkillCard = styled(motion.div)`
   }
 `;
 
-const SkillName = styled.h3`
+const SkillName = styled.h4`
   color: #00d4ff;
   font-size: 1.4rem;
   margin-bottom: 0.5rem;
@@ -87,12 +99,86 @@ const YearsText = styled.p`
 
 function Skills() {
   const skills = [
-    { skill: 'React.js', years: 6 },
-    { skill: 'Node.js', years: 5 },
-    { skill: 'Django', years: 5 },
-    { skill: 'Python', years: 8 },
-    { skill: 'TensorFlow', years: 3 },
-    { skill: 'AWS', years: 3 },
+    {
+      category: 'Frontend Development',
+      skills: [
+        { skill: 'HTML', years: 13 },
+        { skill: 'CSS', years: 13 },
+        { skill: 'JavaScript', years: 13 },
+        { skill: 'React.js', years: 6 },
+        { skill: 'Next.js', years: 3 },
+        { skill: 'TypeScript', years: 5 },
+        { skill: 'Redux', years: 5 },
+        { skill: 'Webpack', years: 6 },
+      ],
+    },
+    {
+      category: 'Backend Development',
+      skills: [
+        { skill: 'Node.js', years: 5 },
+        { skill: 'Express.js', years: 4 },
+        { skill: 'Django', years: 5 },
+        { skill: 'Flask', years: 3 },
+        { skill: 'PHP', years: 4 },
+        { skill: 'REST API', years: 6 },
+        { skill: 'GraphQL', years: 3 },
+        { skill: 'SQL (MySQL, PostgreSQL)', years: 5 },
+        { skill: 'NoSQL (MongoDB)', years: 5 },
+      ],
+    },
+    {
+      category: 'Cloud Technologies',
+      skills: [
+        { skill: 'Google Cloud (GCP)', years: 4 },
+        { skill: 'AWS', years: 3 },
+        { skill: 'Azure', years: 3 },
+        { skill: 'Lambda', years: 3 },
+        { skill: 'Serverless Technologies', years: 5 },
+        { skill: 'Docker', years: 5 },
+        { skill: 'Kubernetes', years: 3 },
+        { skill: 'Bitbucket', years: 5 },
+        { skill: 'CI/CD', years: 5 },
+      ],
+    },
+    {
+      category: 'AI/ML Development',
+      skills: [
+        { skill: 'Python', years: 8 },
+        { skill: 'Machine Learning', years: 4 },
+        { skill: 'NLP and Generative AI', years: 2 },
+        { skill: 'TensorFlow', years: 3 },
+      ],
+    },
+    {
+      category: 'System Development',
+      skills: [
+        { skill: 'Java', years: 3 },
+        { skill: 'C#', years: 3 },
+        { skill: 'Linux', years: 8 },
+        { skill: 'Unix', years: 8 },
+        { skill: 'CLI', years: 8 },
+        { skill: 'Shell Scripting', years: 3 },
+        { skill: 'Network Security', years: 5 },
+      ],
+    },
+    {
+      category: 'Software Quality Assurance',
+      skills: [
+        { skill: 'Cypress', years: 5 },
+        { skill: 'Selenium', years: 5 },
+        { skill: 'JEST', years: 5 },
+        { skill: 'Automation Testing', years: 5 },
+      ],
+    },
+    {
+      category: 'Project Management',
+      skills: [
+        { skill: 'Agile', years: 6 },
+        { skill: 'Jira', years: 6 },
+        { skill: 'Kanban', years: 6 },
+        { skill: 'Scrum', years: 6 },
+      ],
+    },
   ];
 
   const cardVariants = {
@@ -117,22 +203,27 @@ function Skills() {
       >
         Skills
       </Title>
-      <SkillsGrid>
-        {skills.map((skill, index) => (
-          <SkillCard
-            key={index}
-            custom={index}
-            initial="hidden"
-            animate="visible"
-            variants={cardVariants}
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: 'spring', stiffness: 300 }}
-          >
-            <SkillName>{skill.skill}</SkillName>
-            <YearsText>{skill.years} years</YearsText>
-          </SkillCard>
-        ))}
-      </SkillsGrid>
+      {skills.map((category, index) => (
+        <div key={index}>
+          <CategoryTitle>{category.category}</CategoryTitle>
+          <SkillsGrid>
+            {category.skills.map((skill, i) => (
+              <SkillCard
+                key={i}
+                custom={i}
+                initial="hidden"
+                animate="visible"
+                variants={cardVariants}
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+              >
+                <SkillName>{skill.skill}</SkillName>
+                <YearsText>{skill.years} years</YearsText>
+              </SkillCard>
+            ))}
+          </SkillsGrid>
+        </div>
+      ))}
     </SkillsSection>
   );
 }
