@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { Tilt } from 'react-tilt';
+import { Link } from 'react-router-dom'; // Add this import at the top
 
 // Cursor animation style
 const Cursor = styled.span`
@@ -91,6 +92,29 @@ const Subtitle = styled.p`
   }
 `;
 
+const Button = styled(Link)`
+  margin-top: 2rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(90deg, #00ffa2, #00d4ff);
+  border: none;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.4s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    background: linear-gradient(90deg, #ff00ff, #00ffa2);
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+  }
+`;
+
 function Home() {
   const [cursorColor, setCursorColor] = useState('#00d4ff'); // Initial color
 
@@ -137,6 +161,7 @@ function Home() {
         </Tagline>
       </Tilt>
       <Subtitle>Building the future with code and creativity</Subtitle>
+      <Button to="/projects">See Projects</Button>
     </Hero>
   );
 }
