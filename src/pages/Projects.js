@@ -79,6 +79,38 @@ margin-bottom: 1rem;
 }
 `;
 
+const AppStoreButton = styled(motion.a)`
+display: inline-block;
+padding: 0.6rem 1.5rem;
+font-size: 1rem;
+font-weight: bold;
+color: #fff;
+background: linear-gradient(90deg, #ff00ff, #00d4ff);
+border-radius: 50px;
+text-decoration: none;
+text-transform: uppercase;
+box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+transition: all 0.3s ease;
+margin-top: 0.5rem;
+margin-bottom: 0.5rem;
+
+&:hover {
+background: linear-gradient(90deg, #00d4ff, #00ffa2);
+box-shadow: 0 0 25px rgba(0, 212, 255, 0.8);
+transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+padding: 0.5rem 1.2rem;
+font-size: 0.9rem;
+}
+
+@media (max-width: 480px) {
+padding: 0.4rem 1rem;
+font-size: 0.8rem;
+}
+`;
+
 const ProjectsGrid = styled.div`
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -137,8 +169,9 @@ title: 'CEIQX: GenAI-Powered Chatbot for CEOs and Employees',
 description: 'Built CEIQX, a chatbot application powered by LLaMa and GPT, designed specifically for companies. The app allows CEOs and employees to communicate in dedicated chat groups while interacting with an intelligent bot that answers work-related and company-specific questions. By integrating with internal resources like Google Drive, emails, and company files, the bot provides instant, informed responses, improving collaboration, productivity, and knowledge sharing across the organization.',
 },
 {
-title: 'AI Calorie Counter App',
+title: 'Calorie Copilot - AI Calorie Counter App',
 description: 'Developed a cross-platform mobile application that tracks daily caloric and macronutrient intake through conversational AI. Built using React Native for the frontend and Node.js for the backend, the app integrates OpenAI\'s GPT-4.1 model to allow users to describe meals in natural language. The chatbot processes input, identifies foods, and calculates nutritional values in real time. Users can view daily summaries through interactive charts, making healthy eating more intuitive and engaging.',
+appStoreLink: 'https://apps.apple.com/us/app/calorie-copilot/id6747270462',
 },
 {
 title: 'Real-Time AR Body Segmentation and Measurement App',
@@ -199,6 +232,18 @@ animate={{ opacity: 1, y: 0 }}
 transition={{ duration: 0.5, delay: index * 0.1 }}
 >
 <ProjectTitle>{project.title}</ProjectTitle>
+{project.appStoreLink && (
+<AppStoreButton
+href={project.appStoreLink}
+target="_blank"
+rel="noopener noreferrer"
+initial={{ opacity: 0, scale: 0.8 }}
+animate={{ opacity: 1, scale: 1 }}
+transition={{ duration: 0.5 }}
+>
+Download on App Store
+</AppStoreButton>
+)}
 <ProjectDescription>{project.description}</ProjectDescription>
 </ProjectCard>
 </Tilt>
