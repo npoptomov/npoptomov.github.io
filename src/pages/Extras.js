@@ -160,6 +160,7 @@ function Extras() {
       { language: "Croatian", level: "Proficient" },
       { language: "Serbian", level: "Fluent" },
       { language: "Bulgarian", level: "Proficient" },
+      { language: "German", level: "Basic" },
     ],
   };
 

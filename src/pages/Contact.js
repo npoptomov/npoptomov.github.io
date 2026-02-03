@@ -1,12 +1,22 @@
-import React from 'react';
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import { FaEnvelope, FaPhone, FaGithub, FaLinkedin, FaMapMarkerAlt } from 'react-icons/fa';
+import React from "react";
+import styled from "styled-components";
+import { motion } from "framer-motion";
+import {
+  FaEnvelope,
+  FaPhone,
+  FaGithub,
+  FaLinkedin,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
 
 const ContactSection = styled(motion.section)`
   padding: 4rem 2rem;
   text-align: center;
-  background: radial-gradient(circle at center, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 212, 255, 0.1) 0%,
+    transparent 70%
+  );
   position: relative;
   overflow: hidden;
 
@@ -141,31 +151,76 @@ function Contact() {
       <ContactCard
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, type: 'spring', stiffness: 100 }}
+        transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
       >
-        <ContactItem custom={0} initial="hidden" animate="visible" variants={itemVariants}>
-          <IconWrapper><FaEnvelope /></IconWrapper>
-          <ContactLink href="mailto:npoptomov@gmail.com">npoptomov@gmail.com</ContactLink>
+        <ContactItem
+          custom={0}
+          initial="hidden"
+          animate="visible"
+          variants={itemVariants}
+        >
+          <IconWrapper>
+            <FaEnvelope />
+          </IconWrapper>
+          <ContactLink href="mailto:npoptomov@gmail.com">
+            npoptomov@gmail.com
+          </ContactLink>
         </ContactItem>
-        <ContactItem custom={1} initial="hidden" animate="visible" variants={itemVariants}>
-          <IconWrapper><FaPhone /></IconWrapper>
-          <ContactLink href="tel:+15612983132">(561) 298-3132</ContactLink>
+        <ContactItem
+          custom={1}
+          initial="hidden"
+          animate="visible"
+          variants={itemVariants}
+        >
+          <IconWrapper>
+            <FaPhone />
+          </IconWrapper>
+          <ContactLink href="tel:+15612983132">+49 0163 2615886</ContactLink>
         </ContactItem>
-        <ContactItem custom={2} initial="hidden" animate="visible" variants={itemVariants}>
-          <IconWrapper><FaGithub /></IconWrapper>
-          <ContactLink href="https://github.com/npoptomov" target="_blank" rel="noopener noreferrer">
+        <ContactItem
+          custom={2}
+          initial="hidden"
+          animate="visible"
+          variants={itemVariants}
+        >
+          <IconWrapper>
+            <FaGithub />
+          </IconWrapper>
+          <ContactLink
+            href="https://github.com/npoptomov"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             github.com/npoptomov
           </ContactLink>
         </ContactItem>
-        <ContactItem custom={3} initial="hidden" animate="visible" variants={itemVariants}>
-          <IconWrapper><FaLinkedin /></IconWrapper>
-          <ContactLink href="https://www.linkedin.com/in/poptomov" target="_blank" rel="noopener noreferrer">
+        <ContactItem
+          custom={3}
+          initial="hidden"
+          animate="visible"
+          variants={itemVariants}
+        >
+          <IconWrapper>
+            <FaLinkedin />
+          </IconWrapper>
+          <ContactLink
+            href="https://www.linkedin.com/in/poptomov"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             linkedin.com/in/poptomov
           </ContactLink>
         </ContactItem>
-        <ContactItem custom={4} initial="hidden" animate="visible" variants={itemVariants}>
-          <IconWrapper><FaMapMarkerAlt /></IconWrapper>
-          <ContactText>Boca Raton, FL 33433</ContactText>
+        <ContactItem
+          custom={4}
+          initial="hidden"
+          animate="visible"
+          variants={itemVariants}
+        >
+          <IconWrapper>
+            <FaMapMarkerAlt />
+          </IconWrapper>
+          <ContactText>Tübingen, Germany</ContactText>
         </ContactItem>
       </ContactCard>
     </ContactSection>
