@@ -162,8 +162,8 @@ function Contact() {
           <IconWrapper>
             <FaEnvelope />
           </IconWrapper>
-          <ContactLink href="mailto:npoptomov@gmail.com">
-            npoptomov@gmail.com
+          <ContactLink href="mailto:nikolapoptomov@gmail.com">
+            nikolapoptomov@gmail.com
           </ContactLink>
         </ContactItem>
         <ContactItem
@@ -220,7 +220,7 @@ function Contact() {
           <IconWrapper>
             <FaMapMarkerAlt />
           </IconWrapper>
-          <ContactText>Tübingen, Germany</ContactText>
+          <ContactText>Boynton Beach, Florida</ContactText>
         </ContactItem>
       </ContactCard>
     </ContactSection>
